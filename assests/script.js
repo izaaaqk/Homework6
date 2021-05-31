@@ -31,7 +31,8 @@ $form.addEventListener("submit", btn => {
             return content == inputVal.toLowerCase();
         });
     }
-//api call
+    const today = moment();
+    //api call
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${"37fcd1e7adf83820e8d9db2feba781a9"}&units=metric`;
 
     fetch(url)
@@ -41,11 +42,12 @@ $form.addEventListener("submit", btn => {
             const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
                 weather[0]["icon"]
             }.svg`;
-
+//add the elements that i requested on my pli call to my html
     const $div = document.createElement("div");
     $div.classList.add("city");
     const contBox = `<h2 class="city-name" data-name="${name}">
         <span>${name}</span>
+        <sup class="date">${today.format("MM-DD-YY")}</sup>
         </h2>
         <figure>
             <img class="city-icon" src="${icon}" alt="${
